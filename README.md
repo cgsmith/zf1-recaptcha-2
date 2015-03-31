@@ -29,10 +29,10 @@ Below is what you would setup in your form.
 <?php
 
 // create your element and pass through your site key and secret key
-$this->addElement('Recaptcha', 'g-recaptcha-response', array(
+$this->addElement('Recaptcha', 'g-recaptcha-response', [
     'siteKey'   => Zend_Registry::get('options')->recaptcha->sitekey,
     'secretKey' => Zend_Registry::get('options')->recaptcha->secretkey,
-));
+]);
 
 ```
 
