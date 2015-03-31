@@ -1,5 +1,5 @@
 {
-  "name": "csmith/zf1-recaptcha-2",
+  "name": "cgsmith/zf1-recaptcha-2",
   "description": "A quick package to assist with using Google reCAPTCHA version 2 with ZF1",
   "keywords": [
     "zf1",
@@ -7,7 +7,7 @@
     "recaptcha"
   ],
   "require": {
-    "php": ">=5.2.11",
+    "php": ">=5.5.0",
     "zendframework/zendframework1": "~1.12"
   },
   "license": "MIT",
