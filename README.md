@@ -7,7 +7,7 @@ you will probably want to use an up-to-date element for your Zend Framework inst
 Usage
 -----
 
-Install the latest version and setup your plugins and form abstract with the following information:
+Install the latest version (1.0.0) and setup your plugins and form abstract with the following information:
 
 ```php
 <?php
