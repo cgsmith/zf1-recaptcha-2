@@ -4,10 +4,20 @@ ZF1 reCAPTCHA2 - Google reCAPTCHA integration
 ZF1 ships with Google reCAPTCHA version 1.  Now that version 2 is available
 you will probably want to use an up-to-date element for your Zend Framework installations.
 
+Installation
+-----
+
+#### Composer Install
+
+    "require": {
+        "cgsmith/zf1-recaptcha-2": "~1.0"
+    }
+
+
 Usage
 -----
 
-Install the latest version (1.0.0) and setup your plugins and form abstract with the following information:
+Install the latest version (1.0.1) and setup your plugins and form abstract with the following information:
 
 ```php
 <?php

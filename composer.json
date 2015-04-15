@@ -4,7 +4,8 @@
   "keywords": [
     "zf1",
     "zend",
-    "recaptcha"
+    "recaptcha",
+    "google"
   ],
   "require": {
     "php": ">=5.5.0",

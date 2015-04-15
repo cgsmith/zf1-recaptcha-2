@@ -2,7 +2,7 @@
 namespace Cgsmith\Validate;
 
 /**
- * Class ValidateRecaptcha
+ * Class Recaptcha
  * Handle validation against Google API
  *
  * @package Cgsmith
@@ -10,7 +10,7 @@ namespace Cgsmith\Validate;
  * @author Chris Smith
  * @link   https://github.com/google/recaptcha
  */
-class ValidateRecaptcha extends Zend_Validate_Abstract
+class Recaptcha extends Zend_Validate_Abstract
 {
     /** @var string secret key */
     protected $_secretKey;
