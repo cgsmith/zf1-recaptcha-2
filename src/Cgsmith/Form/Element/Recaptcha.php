@@ -35,7 +35,7 @@ class Recaptcha extends Zend_Form_Element
         }
         $this->_siteKey = trim($options['siteKey']); // trim the white space if there is any just to be sure
         $this->_secretKey = trim($options['secretKey']); // trim the white space if there is any just to be sure
-        $this->addValidator('Recaptcha', false, ['secretKey' => $this->_secretKey]);
+        $this->addValidator('Recaptcha', false, array('secretKey' => $this->_secretKey));
         $this->setAllowEmpty(false);
         parent::__construct($spec, $options);
     }
