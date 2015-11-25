@@ -38,7 +38,7 @@ $this->view->addHelperPath(APPLICATION_PATH . '/../vendor/cgsmith/zf1-recaptcha-
 
 ```php
  $this->addPrefixPath('Cgsmith\\Form\\Element', APPLICATION_PATH . '/../vendor/cgsmith/zf1-recaptcha-2/src/Cgsmith/Form/Element', Zend_Form::ELEMENT);
-        $this->addElementPrefixPath('Cgsmith\\Validate\\', APPLICATION_PATH . '/../vendor/cgsmith/zf1-recaptcha-2/src/Cgsmith/Validate/', Zend_Form_Element::VALIDATE);
+ $this->addElementPrefixPath('Cgsmith\\Validate\\', APPLICATION_PATH . '/../vendor/cgsmith/zf1-recaptcha-2/src/Cgsmith/Validate/', Zend_Form_Element::VALIDATE);
 
 ```
 
@@ -58,9 +58,11 @@ $this->addElement('Recaptcha', 'g-recaptcha-response', [
 * On your controller, after "validate the post data"
 
 ```php
-$values = $form->getValues();
-unset($values['g-recaptcha-response']);
-
+if($form->isValid($_POST)) {
+	$values = $form->getValues();
+	unset($values['g-recaptcha-response']);
+	// Your business logic must be here
+}
 ```
 
 About
