@@ -26,29 +26,19 @@ recaptcha.sitekey = "YOUR SITE KEY GIVED BY GOOGLE"
 recaptcha.secretkey = "YOUR SECRET KEY GIVED BY GOOGLE"
 ```
 
-* In your controller or bootsrap:
+* In your controller:
 
 ```php
 <?php
-// important view settings that you will have to place
-// pulls in google js api
-$view->headScript()->appendFile('//www.google.com/recaptcha/api.js'); 
-```
-
-* In your bootstrap
-
-```php
-// setup your helper path
-$view->addHelperPath('/src/Cgsmith/View/Helper', 'Cgsmith\\View\\Helper\\'); 
-
+$this->view->headScript()->appendFile('//www.google.com/recaptcha/api.js'); 
+$this->view->addHelperPath(APPLICATION_PATH . '/../vendor/cgsmith/zf1-recaptcha-2/src/Cgsmith/View/Helper', 'Cgsmith\\View\\Helper\\');
 ```
 
 * In the init() function of your Form
 
 ```php
-// setup prefix path for form element (form abstract) 
-$this->addPrefixPath('Cgsmith\\Form\\Element', '/src/Cgsmith/Form/Element', Zend_Form::ELEMENT);
-$this->addElementPrefixPath('Cgsmith\\Validate\\', '/src/Cgsmith/Validate/', Zend_Form_Element::VALIDATE);
+ $this->addPrefixPath('Cgsmith\\Form\\Element', APPLICATION_PATH . '/../vendor/cgsmith/zf1-recaptcha-2/src/Cgsmith/Form/Element', Zend_Form::ELEMENT);
+        $this->addElementPrefixPath('Cgsmith\\Validate\\', APPLICATION_PATH . '/../vendor/cgsmith/zf1-recaptcha-2/src/Cgsmith/Validate/', Zend_Form_Element::VALIDATE);
 
 ```
 

@@ -10,7 +10,7 @@
   "require": {
     "php": ">=5.5.0",
     "zendframework/zendframework1": "~1.12",
-    "joachimjusth/zf1-recaptcha-2": "zf1-recaptcha-2-2"
+    "cgsmith/zf1-recaptcha-2": "~1.0.1"
   },
   "license": "MIT",
   "authors": [
