@@ -9,7 +9,7 @@ namespace Cgsmith\Form\Element;
  * @license MIT
  * @author  Chris Smith
  */
-class Recaptcha extends Zend_Form_Element
+class Recaptcha extends \Zend_Form_Element
 {
     /** @var string specify formRecaptcha helper */
     public $helper = 'formRecaptcha';
