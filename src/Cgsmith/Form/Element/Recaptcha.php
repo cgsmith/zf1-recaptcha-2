@@ -9,7 +9,7 @@ namespace Cgsmith\Form\Element;
  * @license MIT
  * @author  Chris Smith
  */
-class Recaptcha extends Zend_Form_Element
+class Recaptcha extends \Zend_Form_Element
 {
     /** @var string specify formRecaptcha helper */
     public $helper = 'formRecaptcha';
@@ -31,7 +31,7 @@ class Recaptcha extends Zend_Form_Element
     public function __construct($spec, $options = null)
     {
         if (empty($options['siteKey']) || empty($options['secretKey'])) {
-            throw new Zend_Exception('Site key and secret key must be specified.');
+            throw new \Zend_Exception('Site key and secret key must be specified.');
         }
         $this->_siteKey = trim($options['siteKey']); // trim the white space if there is any just to be sure
         $this->_secretKey = trim($options['secretKey']); // trim the white space if there is any just to be sure

@@ -10,7 +10,7 @@ namespace Cgsmith\Validate;
  * @author Chris Smith
  * @link   https://github.com/google/recaptcha
  */
-class Recaptcha extends Zend_Validate_Abstract
+class Recaptcha extends \Zend_Validate_Abstract
 {
     /** @var string secret key */
     protected $_secretKey;
@@ -56,7 +56,7 @@ class Recaptcha extends Zend_Validate_Abstract
             return false;
         }
 
-        if (!$this->_verify()) {
+        if (!$this->_verify($value)) {
             $this->_error(self::INVALID_CAPTCHA);
             return false;
         }
@@ -67,14 +67,15 @@ class Recaptcha extends Zend_Validate_Abstract
     /**
      * Calls the reCAPTCHA siteverify API to verify whether the user passes the captcha test.
      *
+     * @param  mixed $value
      * @return boolean
      * @link   https://github.com/google/recaptcha
      */
-    protected function _verify()
+    protected function _verify($value)
     {
         $queryString = http_build_query([
             'secret'   => $this->_secretKey,
-            'response' => $this->_value,
+            'response' => $value,
             'remoteIp' => $_SERVER['REMOTE_ADDR']
         ]);
 
