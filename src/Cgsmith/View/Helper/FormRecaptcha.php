@@ -8,7 +8,7 @@ namespace Cgsmith\View\Helper;
  * @license MIT
  * @author  Chris Smith
  */
-class FormRecaptcha extends Zend_View_Helper_FormElement
+class FormRecaptcha extends \Zend_View_Helper_FormElement
 {
     /**
      * For google recaptcha div to render properly
