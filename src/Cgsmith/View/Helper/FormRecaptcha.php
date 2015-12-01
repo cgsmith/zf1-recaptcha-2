@@ -24,7 +24,7 @@ class FormRecaptcha extends \Zend_View_Helper_FormElement
     public function formRecaptcha($name, $value = null, $attribs = null, $options = null, $listsep = '')
     {
         if (!isset($attribs['siteKey']) || !isset($attribs['secretKey'])) {
-            throw new Zend_Exception('Site key is not set in the view helper');
+            throw new \Zend_Exception('Site key is not set in the view helper');
         }
         return '<div class="g-recaptcha" data-sitekey="' . $attribs['siteKey'] . '" data-callback="recaptchaCallback" ku-recaptcha="' . $attribs['ku-recaptcha'] . '"></div>';
     }
