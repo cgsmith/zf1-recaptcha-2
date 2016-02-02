@@ -11,6 +11,11 @@
     "php": ">=5.5.0",
     "zendframework/zendframework1": "~1.12"
   },
+  "autoload": {
+    "psr-4": {
+      "Cgsmith\\": "src/Cgsmith"
+    }
+  },
   "license": "MIT",
   "authors": [
     {
