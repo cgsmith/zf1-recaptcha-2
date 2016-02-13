@@ -1,0 +1,11 @@
+<?php if(isset($this->values)): ?>
+    <pre>
+        Name: <?= $this->values['name']; ?>
+        Email: <?= $this->values['email']; ?>
+        Comment: <?= $this->values['body']; ?>
+    </pre>
+<?php endif; //isset($this->values) ?>
+
+<?php if(isset($this->form)) : ?>
+    <?= $this->form; ?>
+<?php endif; //isset($this->form) ?>

@@ -19,7 +19,7 @@ class FormRecaptcha extends \Zend_View_Helper_FormElement
      * @param null $options
      * @param string $listsep
      * @return string
-     * @throws Zend_Exception
+     * @throws \Zend_Exception
      */
     public function formRecaptcha($name, $value = null, $attribs = null, $options = null, $listsep = '')
     {

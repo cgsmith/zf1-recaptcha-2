@@ -19,39 +19,50 @@ Usage
 
 Install the latest version (1.0.1) and setup your plugins and form abstract with the following information:
 
+* On your application.ini or where you want
+
+```ini
+recaptcha.sitekey = "YOUR SITE KEY GIVED BY GOOGLE"
+recaptcha.secretkey = "YOUR SECRET KEY GIVED BY GOOGLE"
+```
+
+* In your controller:
+
 ```php
 <?php
-// important view settings that you will have to place
-$view->headScript()->appendFile('//www.google.com/recaptcha/api.js'); // pulls in google js api
+$this->view->headScript()->appendFile('//www.google.com/recaptcha/api.js'); 
+$this->view->addHelperPath(APPLICATION_PATH . '/../vendor/cgsmith/zf1-recaptcha-2/src/Cgsmith/View/Helper', 'Cgsmith\\View\\Helper\\');
+```
 
-// setup your helper path
-$view->addHelperPath('/src/Cgsmith/View/Helper', 'Cgsmith\\View\\Helper\\'); 
+* In the init() function of your Form
 
-// setup prefix path for form element (form abstract) 
-$this->addPrefixPath('Cgsmith\\Form\\Element', '/src/Cgsmith/Form/Element', Zend_Form::ELEMENT);
-$this->addElementPrefixPath('Cgsmith\\Validate\\', '/src/Cgsmith/Validate/', Zend_Form_Element::VALIDATE);
+```php
+ $this->addPrefixPath('Cgsmith\\Form\\Element', APPLICATION_PATH . '/../vendor/cgsmith/zf1-recaptcha-2/src/Cgsmith/Form/Element', Zend_Form::ELEMENT);
+ $this->addElementPrefixPath('Cgsmith\\Validate\\', APPLICATION_PATH . '/../vendor/cgsmith/zf1-recaptcha-2/src/Cgsmith/Validate/', Zend_Form_Element::VALIDATE);
 
 ```
 
-Below is what you would setup in your form.
+* Below is what you would setup in your form.
 
 ```php
 <?php
 
 // create your element and pass through your site key and secret key
 $this->addElement('Recaptcha', 'g-recaptcha-response', [
-    'siteKey'   => Zend_Registry::get('options')->recaptcha->sitekey,
-    'secretKey' => Zend_Registry::get('options')->recaptcha->secretkey,
+    'siteKey'   => Zend_Registry::get('application')->recaptcha->sitekey,
+    'secretKey' => Zend_Registry::get('application')->recaptcha->secretkey,
 ]);
 
 ```
 
-After you run `$form->isValid($post)` you will need to run something similar to:
+* On your controller, after "validate the post data"
 
 ```php
-$values = $form->getValues();
-unset($values['g-recaptcha-response']);
-
+if($form->isValid($_POST)) {
+	$values = $form->getValues();
+	unset($values['g-recaptcha-response']);
+	// Your business logic must be here
+}
 ```
 
 About
@@ -60,7 +71,7 @@ About
 Requirements
 ------------
 
-- ZF1 reCAPTCHA2 works with PHP 5.3 or above.
+- ZF1 reCAPTCHA2 works with PHP 5.5 or above.
 
 Submitting bugs and feature requests
 ------------------------------------

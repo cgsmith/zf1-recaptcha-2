@@ -1,0 +1,23 @@
+{
+  "name": "cgsmith/zf1-recaptcha-2/example",
+  "description": "A short example to use ZF1 Recaptcha 2",
+  "keywords": [
+    "zf1",
+    "zend",
+    "recaptcha",
+    "google"
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "zendframework/zendframework1": "~1.12",
+    "cgsmith/zf1-recaptcha-2": "~1.0.1"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Joachim Justh",
+      "email": "me@joachimjusth.com",
+      "homepage": "http://joachimjusth.com"
+    }
+  ]
+}

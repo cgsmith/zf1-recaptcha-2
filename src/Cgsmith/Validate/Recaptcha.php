@@ -55,6 +55,7 @@ class Recaptcha extends \Zend_Validate_Abstract
             $this->_error(self::CAPTCHA_EMPTY);
             return false;
         }
+        $this->_value = $value;
 
         if (!$this->_verify($value)) {
             $this->_error(self::INVALID_CAPTCHA);
