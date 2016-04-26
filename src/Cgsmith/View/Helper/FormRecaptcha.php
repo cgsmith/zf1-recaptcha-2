@@ -26,7 +26,17 @@ class FormRecaptcha extends \Zend_View_Helper_FormElement
         if (!isset($attribs['siteKey']) || !isset($attribs['secretKey'])) {
             throw new \Zend_Exception('Site key is not set in the view helper');
         }
-        return '<div class="g-recaptcha" data-sitekey="' . $attribs['siteKey'] . '"></div>';
+
+        $customClasses = '';
+        if( isset( $attribs['classes'] )) {
+            if( is_array( $attribs['classes'] ) ) {
+                $customClasses = implode(' ', $attribs['classes']);
+            } else {
+                $customClasses = $attribs['classes'];
+            }
+        }
+
+        return '<div class="g-recaptcha ' . $customClasses . '" data-sitekey="' . $attribs['siteKey'] . '"></div>';
     }
 
 }
