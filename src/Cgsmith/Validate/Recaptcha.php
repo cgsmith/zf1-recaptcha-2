@@ -10,7 +10,7 @@ namespace Cgsmith\Validate;
  * @author Chris Smith
  * @link   https://github.com/google/recaptcha
  */
-class Recaptcha extends Zend_Validate_Abstract
+class Recaptcha extends \Zend_Validate_Abstract
 {
     /** @var string secret key */
     protected $_secretKey;
