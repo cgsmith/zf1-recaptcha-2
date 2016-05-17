@@ -36,7 +36,8 @@ class FormRecaptcha extends \Zend_View_Helper_FormElement
             }
         }
 
-        return '<div class="g-recaptcha ' . $customClasses . '" data-sitekey="' . $attribs['siteKey'] . '"></div>';
+        $js = '<script src=\'https://www.google.com/recaptcha/api.js\'></script>';
+        $captcha= '<div class="g-recaptcha ' . $customClasses . '" data-sitekey="' . $attribs['siteKey'] . '"></div>';
+        return $js . $captcha;
     }
-
 }
