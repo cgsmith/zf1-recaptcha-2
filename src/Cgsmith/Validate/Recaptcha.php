@@ -30,16 +30,17 @@ class Recaptcha extends \Zend_Validate_Abstract
     /** @const string peer key for communication */
     const PEER_KEY = 'www.google.com';
 
-    protected $_messageTemplates = array(
+    protected $_messageTemplates = [
         self::INVALID_CAPTCHA => 'The captcha was invalid',
         self::CAPTCHA_EMPTY   => 'The captcha must be completed'
-    );
+    ];
 
     /**
      * @param $options
      */
     public function __construct($options) {
         $this->_secretKey = $options['secretKey'];
+        $this->_overrideMessagesIfExisting();
     }
 
     /**
@@ -47,10 +48,13 @@ class Recaptcha extends \Zend_Validate_Abstract
      *
      * @param mixed $value
      * @param null $context
+     *
      * @return bool
      */
-    public function isValid($value, $context = null)
-    {
+    public function isValid($value, $context = null) {
+        $frontController = \Zend_Controller_Front::getInstance();
+        $request = $frontController->getRequest();
+        $value = $request->getParam('g-recaptcha-response');
         if (empty($value)) {
             $this->_error(self::CAPTCHA_EMPTY);
             return false;
@@ -69,11 +73,11 @@ class Recaptcha extends \Zend_Validate_Abstract
      * Calls the reCAPTCHA siteverify API to verify whether the user passes the captcha test.
      *
      * @param  mixed $value
+     *
      * @return boolean
      * @link   https://github.com/google/recaptcha
      */
-    protected function _verify($value)
-    {
+    protected function _verify($value) {
         $queryString = http_build_query([
             'secret'   => $this->_secretKey,
             'response' => $value,
@@ -94,8 +98,15 @@ class Recaptcha extends \Zend_Validate_Abstract
                 $peerKey      => self::PEER_KEY
             ]
         ]);
-        $jsonObject = json_decode(file_get_contents(self::SITE_VERIFY_URL,false,$context));
+        $jsonObject = json_decode(file_get_contents(self::SITE_VERIFY_URL, false, $context));
 
         return $jsonObject->success;
+    }
+
+    private function _overrideMessagesIfExisting() {
+        $params = \Zend_Registry::get('recaptcha');
+        if (!empty($params['messageTemplates']) && is_array($params['messageTemplates'])) {
+            $this->_messageTemplates = $params['messageTemplates'];
+        }
     }
 }

@@ -22,36 +22,49 @@ Install the latest version (1.0.1) and setup your plugins and form abstract with
 * On your application.ini or where you want
 
 ```ini
-recaptcha.sitekey = "YOUR SITE KEY GIVED BY GOOGLE"
-recaptcha.secretkey = "YOUR SECRET KEY GIVED BY GOOGLE"
+recaptcha.sitekey = "YOUR SITE KEY GIVEN BY GOOGLE"
+recaptcha.secretkey = "YOUR SECRET KEY GIVEN BY GOOGLE"
 ```
 
-* In your controller:
+* In your bootstrap:
 
 ```php
-<?php
-$this->view->headScript()->appendFile('//www.google.com/recaptcha/api.js'); 
-$this->view->addHelperPath(APPLICATION_PATH . '/../vendor/cgsmith/zf1-recaptcha-2/src/Cgsmith/View/Helper', 'Cgsmith\\View\\Helper\\');
+public function _initView()
+{
+    $view = new Zend_View();
+
+    $view->addHelperPath(
+        APPLICATION_PATH . '/../vendor/cgsmith/zf1-recaptcha-2/src/Cgsmith/View/Helper',
+        'Cgsmith\\View\\Helper\\'
+    );
+
+    Zend_Controller_Action_HelperBroker::addHelper(new Zend_Controller_Action_Helper_ViewRenderer($view));
+
+    return $view;
+}
+
+public function _initRecaptcha()
+{
+    $config = \Zend_Registry::get('application');
+    $params = $config->recaptcha->toArray();
+
+    $params['messageTemplates'] = [
+        \Cgsmith\Validate\Recaptcha::INVALID_CAPTCHA => 'The captcha was invalid', // set custom/translated message
+        \Cgsmith\Validate\Recaptcha::CAPTCHA_EMPTY => 'The captcha must be completed'
+    ];
+
+    \Zend_Registry::set('recaptcha', $params);
+}
 ```
 
-* In the init() function of your Form
-
-```php
- $this->addPrefixPath('Cgsmith\\Form\\Element', APPLICATION_PATH . '/../vendor/cgsmith/zf1-recaptcha-2/src/Cgsmith/Form/Element', Zend_Form::ELEMENT);
- $this->addElementPrefixPath('Cgsmith\\Validate\\', APPLICATION_PATH . '/../vendor/cgsmith/zf1-recaptcha-2/src/Cgsmith/Validate/', Zend_Form_Element::VALIDATE);
-
-```
 
 * Below is what you would setup in your form.
 
 ```php
 <?php
 
-// create your element and pass through your site key and secret key
-$this->addElement('Recaptcha', 'g-recaptcha-response', [
-    'siteKey'   => Zend_Registry::get('application')->recaptcha->sitekey,
-    'secretKey' => Zend_Registry::get('application')->recaptcha->secretkey,
-]);
+// create your element
+$this->addElement(new \Cgsmith\Form\Element\Recaptcha());
 
 ```
 
