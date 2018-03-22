@@ -10,14 +10,14 @@ Installation
 #### Composer Install
 
     "require": {
-        "cgsmith/zf1-recaptcha-2": "~1.0"
+        "blackline/zf1-recaptcha-2": "1.0.3"
     }
 
 
 Usage
 -----
 
-Install the latest version (1.0.1) and setup your plugins and form abstract with the following information:
+Install the latest version (1.0.3) and setup your plugins and form abstract with the following information:
 
 * On your application.ini or where you want
 
@@ -84,7 +84,7 @@ About
 Requirements
 ------------
 
-- ZF1 reCAPTCHA2 works with PHP 5.5 or above.
+- ZF1 reCAPTCHA2 works with PHP 5.3 or above.
 
 Submitting bugs and feature requests
 ------------------------------------
